@@ -57,9 +57,21 @@ class Array
 
     end
 
+    def my_rotate(num=1)
+        new_array = Array.new(self.length)
+        self.each_with_index {|ele, i| new_array[(i-num)%self.length]= ele}
+        return new_array
+    end
+
 
     
 end
+
+a = [ "a", "b", "c", "d" ]
+p a.my_rotate         #=> ["b", "c", "d", "a"]
+p a.my_rotate(2)      #=> ["c", "d", "a", "b"]
+p a.my_rotate(-3)     #=> ["b", "c", "d", "a"]
+p a.my_rotate(15)     #=> ["d", "a", "b", "c"]
 
 # Example to check my_zip method
 
