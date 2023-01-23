@@ -19,6 +19,15 @@ class Array
         self.my_each {|el| arr << el if !prc.call(el)}
         return arr
     end
+    def my_any?(&prc)
+        new_array = self.my_select{|ele| prc.call(ele)}
+        new_array.length > 0
+    end
+
+    def my_all?(&prc)
+        new_array = self.my_select{|ele| prc.call(ele)}
+        new_array.length == self.length
+    end
 
     
 end
@@ -50,3 +59,10 @@ end
 # a = [1, 2, 3]
 # p a.my_reject { |num| num > 1 } # => [1]
 # p a.my_reject { |num| num == 4 } # => [1, 2, 3]
+
+# Example to check my_any? method
+a = [1, 2, 3]
+# p a.my_any? { |num| num > 1 } # => true
+# p a.my_any? { |num| num == 4 } # => false
+p a.my_all? { |num| num > 1 } # => false
+p a.my_all? { |num| num < 4 } # => true
