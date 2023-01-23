@@ -29,8 +29,13 @@ class Array
         new_array.length == self.length
     end
 
+    def add(a,b)
+        a+b
+    end
+
     
 end
+
 
 # Example to check my_each method
 # # calls my_each twice on the array, printing all the numbers twice.
