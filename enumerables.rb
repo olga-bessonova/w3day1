@@ -32,10 +32,23 @@ class Array
     def add(a,b)
         a+b
     end
+    def my_flatten
+        return self if self.none? {|ele| ele.instance_of? Array}
+        array = []
+        self.each do |ele|
+            if !ele.instance_of? Array
+                array << ele
+            else
+                array.concat(ele.my_flatten)
+            end
+        end
+        return array
+    end
 
     
 end
 
+p [1, 2, 3, [4, [5, 6]], [[[7]], 8]].my_flatten # => [1, 2, 3, 4, 5, 6, 7, 8]
 
 # Example to check my_each method
 # # calls my_each twice on the array, printing all the numbers twice.
@@ -66,8 +79,8 @@ end
 # p a.my_reject { |num| num == 4 } # => [1, 2, 3]
 
 # Example to check my_any? method
-a = [1, 2, 3]
-# p a.my_any? { |num| num > 1 } # => true
-# p a.my_any? { |num| num == 4 } # => false
-p a.my_all? { |num| num > 1 } # => false
-p a.my_all? { |num| num < 4 } # => true
+# a = [1, 2, 3]
+# # p a.my_any? { |num| num > 1 } # => true
+# # p a.my_any? { |num| num == 4 } # => false
+# p a.my_all? { |num| num > 1 } # => false
+# p a.my_all? { |num| num < 4 } # => true
